@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <button type="button" id="btnReplay" class="btn btn-primary">Replay</button>
+    <button type="button" id="btnAttack" class="btn btn-primary">Attack</button>
+    <div class="container justicy-content-center">
+        <div class="row">
+            <div class="card col-3" id="player1" data-charName="Luke">
+                <div class="card-body">
+                    <h4 class="card-title">Player 1</h4>
+                    <p class="card-text">
+                        Some quick example text to build on the card title
+                        and make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+            <div class="card col-3" id="player2" data-charName="Darth Vader">
+                <div class="card-body">
+                    <h4 class="card-title">Player 2</h4>
+                    <p class="card-text">
+                        Some quick example text to build on the card title
+                        and make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+            <div class="card col-3" id="player3" data-charName="Darth Maul">
+                <div class="card-body">
+                    <h4 class="card-title">Player 3</h4>
+                    <p class="card-text">
+                        Some quick example text to build on the card title
+                        and make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+            <div class="card col-3" id="player4" data-charName="Yoda">
+                <div class="card-body">
+                    <h4 class="card-title">Player 4</h4>
+                    <p class="card-text">
+                        Some quick example text to build on the card title
+                        and make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/scripts/Fighter.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        let fighters =[],myFighter, opponent, numAttacks;
+        // let luke = new Fighter(150, "Luke");
+        // let vader = new Fighter(190, "Darth Vader");
+        // let darth = new Fighter(210, "Darth Maul");
+        // let yoda =new Fighter(300, "Yoda");
+
+        fighters.push(new Fighter(150, "Luke"));
+        fighters.push(new Fighter(190, "Darth Vader"));
+        fighters.push(new Fighter(210, "Darth Maul"));
+        fighters.push(new Fighter(300, "Yoda"));
+        fighters[1].defeated = true;
+        let startGame = function(){
+
+        }
+
+        let attackOpponent = function(me, opp){
+
+        }
+        
+        let counterAttack = function(opp, me){
+
+        }
+
+        $("#btnReplay").on("click", function(){
+        
+        })
+
+        $("#btnAttack").on("click", function(){
+            attackOpponent(myFighter, opponent);
+        })
+
+        $(".card").on("click", function(){                      
+            let charName = this.attributes["data-charName"].value;
+            if(myFighter == undefined || myFighter.length ==0){
+                myFighter = fighters.filter(function(o,i){
+                    if(charName == o.name){
+                        fighters.splice(i,1);
+                    }
+                    return charName == o.name;
+                });
+            }else if(opponent == undefined || opponent.length ==0){
+                opponent = fighters.filter(function(o,i){
+                    if(charName == o.name && !o.defeated){
+                        return charName == o.name;
+                    }
+                });;
+            }
+        })
+    </script>
+</body>
+
+</html>
