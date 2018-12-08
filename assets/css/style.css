@@ -1,8 +1,20 @@
 body{background: black; height: 100vh;}
-
+.inst{
+    width:100%;
+    color:white;
+    margin-bottom:16px;
+    text-align: center;
+}
+.btnAttack{
+    width: 160px;
+    height: 160px;
+    background: url(../images//btnAttack.png);
+    margin:0 auto;
+    cursor: pointer;
+}
 #fighterPit{
     display: flex;
-    padding:24px 36px;
+    padding:24px 36px 0px 36px;
 }
 .card{
     cursor: pointer; 

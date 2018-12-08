@@ -1,4 +1,8 @@
 let fighters = [], myFighter, opponent, numAttacks, numWins;
+var lsOnAudio = document.createElement("audio");
+lsOnAudio.setAttribute("src", "./assets/media/lsOn.mp3");
+var sbClashAudio = document.createElement("audio");
+sbClashAudio.setAttribute("src", "./assets/media/saberClash.mp3");
 
 let startGame = function () {
   numWins = 0;
@@ -20,6 +24,7 @@ let startGame = function () {
   $(".rtF.fighterImg").css("background","none");
   $(".oppHealth .healthBar").width(0);
   $(".myHealth .healthBar").width(0);
+  $(".inst").text(`Choose your champion by clicking on their name`);
 }
 
 let counterAttack = function (opp, me) {
@@ -84,12 +89,14 @@ let setBkImg = function (side, name) {
 }
 
 let setCombatants = function(){
+  $(".inst").text(``);
   $(".bkImg").fadeOut(1500,function(){
     $(".bkImg").css(`background`, `url(./assets/images/port`+evalName(myFighter.name)+evalName(opponent.name)+`.png)`);
     $(".bkImg").fadeIn(1500, function(){
       $("#btnAttack").removeClass("d-none");
     });
     $(".oppHealth .healthBar").width(197);
+    lsOnAudio.play();
   })
     
 
@@ -97,16 +104,12 @@ let setCombatants = function(){
       switch(str){
         case "Luke":
           return "Luk";
-          break;
         case "Darth Vader":
           return "Vad";
-          break;
         case "Darth Maul":
           return "Dar";
-          break;
         case "Yoda":
           return "Yod";
-          break;
         default:
           break;
       }
@@ -114,20 +117,19 @@ let setCombatants = function(){
 }
 
 $("#btnAttack").on("click", function () {
+  sbClashAudio.play();
   $(".myAttack").text("");
   $(".oppAttack").text("");
   opponent.hp -= (myFighter.attackP * numAttacks);
   $(".myAttack").text(`You struck ` + opponent.name + ` for ` + (myFighter.attackP * numAttacks) + ` points of damage.`);
   if (opponent.hp > 0) {
-    $(opponent.myCard).find(".card-text").text(opponent.hp);
     $(".oppHealth .healthBar").width((opponent.hp/opponent.maxHealth)*197);
-
     counterAttack(opponent, myFighter);
   } else {
     //OPPONENT IS DEFEATED
+    numWins++;
     $(".oppHealth .healthBar").width(0);
     $(opponent.myCard).addClass("defeated");
-    $(opponent.myCard).find(".card-text").text("");
     $(".oppAttack").text(`You have defeated ` + opponent.name + `. Choose your next opponent.`);
     $(".rightPerson").text("");
     opponent.defeated = true;
@@ -138,10 +140,10 @@ $("#btnAttack").on("click", function () {
       $(".bkImg").css(`background`, `url(./assets/images/portalWindow.png)`);
       $(".bkImg").fadeIn(1500);
     })
-    if (numWins) {
+    if (numWins == fighters.length) {
       $("#btnReplay").removeClass("d-none");
+      $(".inst").text("You have defeated all your enemies.");
     }
-    
   }
   numAttacks++;
 });
@@ -170,13 +172,14 @@ $(".card").on("click", function () {
     });
     setBkImg("l", myFighter.name);
     $(".myHealth .healthBar").width(197);
+    lsOnAudio.play();
+    $(".inst").text(`Choose your opponent by clicking on their name`);
   } else if (opponent == undefined || opponent.length == 0) {
     opponent = fighters.filter(function (o, i) {
       if (charName == o.name && !o.defeated) {
         return charName == o.name;
       }
     })[0];
-    $(opponent.myCard).find(".card-text").text(opponent.hp);
     $(".rightPerson").text(opponent.name);
     
     setBkImg("r", opponent.name);
