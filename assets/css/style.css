@@ -1,0 +1,31 @@
+body{background: black; height: 100vh;}
+
+#fighterPit{
+    display: flex;
+    padding:24px 36px;
+}
+.card{
+    cursor: pointer; 
+    margin:24px;
+    width:calc((100% - 120px) / 4) !important;
+}
+
+.defeated{background:#bababa; transition: 2s; cursor: not-allowed;}
+
+.combatArena{
+    position: relative;
+    height: calc(100vh - 178px);
+}
+.mainContent{
+    position: relative;
+}
+.fighterImg{
+    position: absolute;
+    top:0px;
+    height:calc(100vh - 178px);
+    background: #6a6a6a;
+    width:300px;
+}
+.rtF{
+    right:0px;
+}

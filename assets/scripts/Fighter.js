@@ -1,12 +1,12 @@
 class Fighter {
-    constructor(hp=0, name) {
+    constructor(hp=0, name, myCard) {
         this.hp = hp,
         this.counterP = 0,
         this.attackP = 0,
         this.name=name,
         this.currentAP = 0,
-        this.defeated = false;   
-        this.myCard   
+        this.defeated = false,  
+        this.myCard = myCard
     }
 
     increaseAttackP(){
