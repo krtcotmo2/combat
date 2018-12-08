@@ -12,11 +12,9 @@ class Fighter {
 
     increaseAttackP(){
         this.currentAP +=this.attackP;
-        console.log(this.currentAP)
     }
 
     takeDamage(arg){
         this.hp -= arg;
-        console.log(this.name + " " + this.hp);
     }
 }
