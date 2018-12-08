@@ -8,9 +8,10 @@ body{background: black; height: 100vh;}
     cursor: pointer; 
     margin:24px;
     width:calc((100% - 120px) / 4) !important;
+    transition: 1s;
 }
 
-.defeated{background:#bababa; transition: 2s; cursor: not-allowed;}
+.defeated{background:#474747; transition: 2s; cursor: not-allowed;}
 
 .combatArena{
     position: relative;
@@ -23,9 +24,46 @@ body{background: black; height: 100vh;}
     position: absolute;
     top:0px;
     height:calc(100vh - 178px);
-    background: #6a6a6a;
     width:300px;
+    background-repeat: no-repeat;
 }
 .rtF{
     right:0px;
 }
+.silHolder{
+    padding-top:125px;
+}
+.bkImg{
+    background: url(../images/portalWindow.png) no-repeat;
+    height: 157px;
+    margin:0px auto;
+    width:500px;
+}
+.healthBarHolder{
+    width:197px;
+    height:12px;
+}
+.healthBar{
+    height: 4px;
+    margin:4px 0px;
+
+    background:#20c2d1;
+    box-shadow: 2px -2px 15px #79cad1,2px 2px 15px #79cad1;
+    border-top-right-radius:2px;
+    border-bottom-right-radius:2px;
+    transition: 1s;
+}
+.myHealth .healthBar{
+    border-top-left-radius:2px;
+    border-bottom-left-radius:2px;
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;
+    box-shadow: -2px -2px 15px #79cad1,-2px 2px 15px #79cad1;
+}
+.lsHandle{
+    height: 12px;
+    width:72px;
+    background: no-repeat url(../images/lsHandle.png);
+}
+.oppLsHandle{transform: rotate(180deg); margin-left:3px;}
+.myLsHandle{margin-right:3px;}

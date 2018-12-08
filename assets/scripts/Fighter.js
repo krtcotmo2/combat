@@ -6,7 +6,8 @@ class Fighter {
         this.name=name,
         this.currentAP = 0,
         this.defeated = false,  
-        this.myCard = myCard
+        this.myCard = myCard,
+        this.maxHealth = hp
     }
 
     increaseAttackP(){
