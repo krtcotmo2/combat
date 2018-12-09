@@ -66,7 +66,7 @@ let theGame = {
                 imgName = pos == "l" ? "lukeLeft.png" : "lukeRight.png";
                 break;
             case "Darth Vader":
-                imgName = pos == "l" ? "vaderLeft.png" : "vader-Right.png";
+                imgName = pos == "l" ? "vaderLeft.png" : "vader-right.png";
                 break;
             case "Darth Maul":
                 imgName = pos == "l" ? "darthLeft.png" : "darthRight.png";
@@ -187,11 +187,8 @@ let theGame = {
         }
         
     },
-    setFightImage:function(){  
-        let val1=this.opponent.name;
-            let val2=this.myFighter.name;
-            //let passFun = this.evalName;
-            let imgName = this.evalName(this.myFighter.name) + this.evalName(this.opponent.name);
+    setFightImage:function(){ 
+        let imgName = this.evalName(this.myFighter.name) + this.evalName(this.opponent.name);
         $(".bkImg").fadeOut(1500,function(){            
             $(".bkImg").css(`background`, `url(./assets/images/port`+imgName+`.png)`);
             $(".bkImg").fadeIn(1500);

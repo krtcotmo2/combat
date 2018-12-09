@@ -69,7 +69,7 @@ let setBkImg = function (side, name) {
       imgName = side == "l" ? "lukeLeft.png" : "lukeRight.png";
       break;
     case "Darth Vader":
-      imgName = side == "l" ? "vaderLeft.png" : "vader-Right.png";
+      imgName = side == "l" ? "vaderLeft.png" : "vader-right.png";
       break;
     case "Darth Maul":
       imgName = side == "l" ? "darthLeft.png" : "darthRight.png";
