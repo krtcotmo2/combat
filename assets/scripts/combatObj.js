@@ -18,6 +18,9 @@ let theGame = {
         $(".card").removeClass("defeated");
         $(".rtF.fighterImg").css("background","none");
         $(".ltF.fighterImg").css("background","none");
+        $(".healthText.opp").text("");
+        $(".healthText.fgt").text("");
+        
         theGame.setSaberWidth(false);        
     },
     setFighters: function () {
@@ -37,12 +40,16 @@ let theGame = {
             }
         })[0];
         
+        
         this[obj].myCard = idStr;
         if (obj === "myFighter") {
+            $(".healthText.fgt").text(this.myFighter.hp);
             this.fighters.splice(ind,1);
             $("#" + idStr).fadeOut("slow");
             this.calcCounterP();
-        }  
+        }else{
+            $(".healthText.opp").text(this.opponent.hp);
+        }
         this[obj].attackP = this.calcMyAP();
         this[obj].currentP = this.calcMyAP();     
     },
@@ -100,7 +107,10 @@ let theGame = {
         $(".oppHealth .healthBar").width((jQuery.isEmptyObject(this.opponent) ? 0 : this.opponent.hp / this.opponent.maxHealth) * 197);
         $(".myHealth .healthBar").width((jQuery.isEmptyObject(this.myFighter) ? 0 : this.myFighter.hp / this.myFighter.maxHealth) * 197);
         if (playSound) {
-            $("#saberOn").trigger("play");
+            let audioElement = document.createElement('audio');
+            audioElement.setAttribute('src', './assets/media/lsOn.mp3');
+            audioElement.currentTime = 0;
+            audioElement.play();            
         }
     },
     calcMyAP: function () {
@@ -124,8 +134,12 @@ let theGame = {
         }
     },
     doAttack: function () {
-        $("#saberClash").trigger("play");
+        let audioElement = document.createElement('audio');
+            audioElement.setAttribute('src', './assets/media/saberClash.mp3');
+            audioElement.currentTime = 0;
+            audioElement.play(); 
         this.opponent.hp -= (this.myFighter.attackP * this.numAtt);
+        $(".healthText.opp").text(this.opponent.hp < 1 ? "":this.opponent.hp);
         this.setSaberWidth(false);
         this.numAtt++;
         if (this.opponent.hp > 1) {
@@ -136,6 +150,7 @@ let theGame = {
     },
     couterAttack: function () {
         this.myFighter.hp -= this.opponent.counterP;
+        $(".healthText.fgt").text(this.myFighter.hp < 1 ? "":this.myFighter.hp);
         this.setSaberWidth(false);
         if(this.myFighter.hp<1){
             $(".myHealth .healthBar").width(0);
@@ -173,8 +188,12 @@ let theGame = {
         
     },
     setFightImage:function(){  
-        $(".bkImg").fadeOut(1500,function(){
-            $(".bkImg").css(`background`, `url(./assets/images/port`+theGame.evalName(theGame.myFighter.name)+theGame.evalName(theGame.opponent.name)+`.png)`);
+        let val1=this.opponent.name;
+            let val2=this.myFighter.name;
+            //let passFun = this.evalName;
+            let imgName = this.evalName(this.myFighter.name) + this.evalName(this.opponent.name);
+        $(".bkImg").fadeOut(1500,function(){            
+            $(".bkImg").css(`background`, `url(./assets/images/port`+imgName+`.png)`);
             $(".bkImg").fadeIn(1500);
         }); 
     },

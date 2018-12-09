@@ -56,6 +56,8 @@
             <div class="oppHealth healthBarHolder">
                 <div class="healthBar"></div>
             </div>
+            <div id="myHealthText" class="healthText fgt">100</div>
+            <div id="myHealthText" class="healthText opp">100</div>
         </div>
         <div class="mainContent">
             <div class="ltF fighterImg"></div>
@@ -68,12 +70,6 @@
             </div>
         </div>
     </div>
-    <audio class="audios d-none" id="saberClash" controls preload="none"> 
-        <source src="./assets/media/saberClash.mp3" type="audio/mpeg">
-     </audio>
-     <audio class="audios d-none" id="saberOn" controls preload="none"> 
-        <source src="./assets/media/lsOn.mp3" type="audio/mpeg">
-     </audio>
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -84,7 +80,6 @@
     <script type='text/javascript'>
         $(document).ready(function () {
             theGame.start();
-
             $(".card").on("click", function () {
                 if (jQuery.isEmptyObject(theGame.myFighter)) {
                     theGame.setMyFighter("myFighter",this.attributes["data-charName"].value,this.id);
@@ -100,7 +95,6 @@
                     theGame.setFightImage()
                 }
             })
-        
             $("#btnAttack").on("click", function(){
                 theGame.doAttack();
             });

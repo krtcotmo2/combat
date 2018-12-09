@@ -1,4 +1,4 @@
-body{background: black; height: 100vh;}
+body{background: black; height: 100vh; min-width: 768px;}
 .inst{
     width:100%;
     color:white;
@@ -22,9 +22,21 @@ body{background: black; height: 100vh;}
     width:calc((100% - 120px) / 4) !important;
 
 }
-
 .defeated{background:#474747; transition: 2s; cursor: not-allowed;}
-
+#healthHolders {
+    height:50px;
+}
+.healthText{
+    color:white;
+    position: absolute;
+    top:16px;
+    left:calc(50% - 50px);
+    text-align: right;
+}
+.healthText.opp{
+    text-align: left;
+    left:calc(50% + 26px);
+}
 .combatArena{
     position: relative;
     height: calc(100vh - 178px);
@@ -43,7 +55,7 @@ body{background: black; height: 100vh;}
     right:0px;
 }
 .silHolder{
-    padding-top:125px;
+    padding-top:96px;
 }
 .bkImg{
     background: url(../images/portalWindow.png) no-repeat;
@@ -58,9 +70,8 @@ body{background: black; height: 100vh;}
 .healthBar{
     height: 4px;
     margin:4px 0px;
-
     background:#20c2d1;
-    box-shadow: 2px -2px 15px #79cad1,2px 2px 15px #79cad1;
+    box-shadow: 2px -2px 15px #79cad1, 2px 2px 15px #79cad1;
     border-top-right-radius:2px;
     border-bottom-right-radius:2px;
     transition: 1s;
@@ -70,7 +81,8 @@ body{background: black; height: 100vh;}
     border-bottom-left-radius:2px;
     border-top-right-radius:0px;
     border-bottom-right-radius:0px;
-    box-shadow: -2px -2px 15px #79cad1,-2px 2px 15px #79cad1;
+    background:#f52004;
+    box-shadow: -2px -2px 15px #eeb8b1, -2px 2px 15px #eeb8b1;
 }
 .lsHandle{
     height: 12px;
