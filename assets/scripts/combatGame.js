@@ -163,7 +163,7 @@ $(".card").on("click", function () {
       }
       return charName == o.name;
     })[0];
-    $(".leftPerson").text(myFighter.name);
+    
     myFighter.attackP = calcMyAP();
     myFighter.currentP = calcMyAP();
     $(myFighter.myCard).fadeOut("slow");
@@ -180,7 +180,7 @@ $(".card").on("click", function () {
         return charName == o.name;
       }
     })[0];
-    $(".rightPerson").text(opponent.name);
+   
     
     setBkImg("r", opponent.name);
     setCombatants();

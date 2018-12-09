@@ -20,7 +20,7 @@ body{background: black; height: 100vh;}
     cursor: pointer; 
     margin:24px;
     width:calc((100% - 120px) / 4) !important;
-    transition: 1s;
+
 }
 
 .defeated{background:#474747; transition: 2s; cursor: not-allowed;}

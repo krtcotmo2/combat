@@ -13,9 +13,9 @@
 
 <body>
     <div class="justify-content-around" id="fighterPit">
-        <div class="card " id="player1" data-charName="Luke">
+        <div class="card" id="player1" data-charName="Luke">
             <div class="card-body">
-                <h4 class="card-title">Luke</h4>
+                <h4 class="card-title text-center">Luke</h4>
                 <p class="card-text">
 
                 </p>
@@ -23,7 +23,7 @@
         </div>
         <div class="card " id="player2" data-charName="Darth Vader">
             <div class="card-body">
-                <h4 class="card-title">Darth Vader</h4>
+                <h4 class="card-title text-center">Darth Vader</h4>
                 <p class="card-text">
 
                 </p>
@@ -31,13 +31,13 @@
         </div>
         <div class="card " id="player3" data-charName="Darth Maul">
             <div class="card-body">
-                <h4 class="card-title">Darth Maul</h4>
+                <h4 class="card-title text-center">Darth Maul</h4>
                 <p class="card-text"></p>
             </div>
         </div>
         <div class="card " id="player4" data-charName="Yoda">
             <div class="card-body">
-                <h4 class="card-title">Yoda</h4>
+                <h4 class="card-title text-center">Yoda</h4>
                 <p class="card-text">
 
                 </p>
@@ -45,13 +45,40 @@
         </div>
     </div>
     <h3 class="inst"></h3>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-    <script src="./assets/scripts/Fighter.js"></script>
+
+    <div class="combatArena">
+        <div class="healthHolders justify-content-center d-flex">
+            <div class="myHealth healthBarHolder d-flex justify-content-end">
+                <div class="healthBar"></div>
+            </div>
+            <div class="myLsHandle lsHandle"></div>
+            <div class="oppLsHandle lsHandle"></div>
+            <div class="oppHealth healthBarHolder">
+                <div class="healthBar"></div>
+            </div>
+        </div>
+        <div class="mainContent">
+            <div class="ltF fighterImg"></div>
+            <div class="rtF fighterImg"></div>
+            <div class="silHolder text-center">
+                <div class="bkImg"></div>
+                <button type="button" id="btnReplay" class="btn btn-primary d-none">Replay</button>
+                <div id="btnAttack"  class="btnAttack d-none"></div>
+                <!-- <button type="button" id="btnAttack" class="btn btn-primary">Attack</button> -->
+            </div>
+        </div>
+    </div>
+    <audio class="audios d-none" id="saberClash" controls preload="none"> 
+        <source src="./assets/media/saberClash.mp3" type="audio/mpeg">
+     </audio>
+     <audio class="audios d-none" id="saberOn" controls preload="none"> 
+        <source src="./assets/media/lsOn.mp3" type="audio/mpeg">
+     </audio>
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <script src="./assets/scripts/Fighter.js"></script>
     <script src="./assets/scripts/combatObj.js"></script>
 
     <script type='text/javascript'>
@@ -60,11 +87,29 @@
 
             $(".card").on("click", function () {
                 if (jQuery.isEmptyObject(theGame.myFighter)) {
-                    theGame.setMyFighter("myFighter",this.attributes["data-charName"].value);
+                    theGame.setMyFighter("myFighter",this.attributes["data-charName"].value,this.id);
+                    theGame.setCharBk("l","myFighter");
+                    theGame.setInstBlock("opponent");
+                    theGame.setSaberWidth(true);
                 }else if (jQuery.isEmptyObject(theGame.opponent)) {
-                    theGame.setMyFighter("opponent",this.attributes["data-charName"].value);
+                    theGame.setMyFighter("opponent",this.attributes["data-charName"].value, this.id);
+                    theGame.setCharBk("r","opponent");
+                    theGame.setInstBlock("");
+                    $("#btnAttack").removeClass("d-none");
+                    theGame.setSaberWidth(true);
+                    theGame.setFightImage()
                 }
             })
+        
+            $("#btnAttack").on("click", function(){
+                theGame.doAttack();
+            });
+            $("#btnReplay").on("click", function () {
+                $("#"+theGame.myFighter.myCard).fadeIn(1);
+                theGame.start();
+                $(this).addClass("d-none");
+            })
+
         });        
     </script>
 </body>
