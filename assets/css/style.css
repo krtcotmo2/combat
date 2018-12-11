@@ -48,7 +48,7 @@ body{background: black; height: 100vh; min-width: 768px;}
 }
 .combatArena{
     position: relative;
-    height: calc(100vh - 178px);
+    height: calc(100vh - 287px);
 }
 .mainContent{
     position: relative;
@@ -56,7 +56,7 @@ body{background: black; height: 100vh; min-width: 768px;}
 .fighterImg{
     position: absolute;
     top:0px;
-    height:calc(100vh - 178px);
+    height:calc(100vh - 287px);
     width:300px;
     background-repeat: no-repeat;
 }
