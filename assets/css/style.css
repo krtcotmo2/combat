@@ -19,10 +19,19 @@ body{background: black; height: 100vh; min-width: 768px;}
 .card{
     cursor: pointer; 
     margin:24px;
-    width:calc((100% - 120px) / 4) !important;
-
+    /* width:calc((100% - 120px) / 4) !important; */
+    width:124px;
+    padding:12px;
+    color:white;
 }
-.defeated{background:#474747; transition: 2s; cursor: not-allowed;}
+.card-body{
+    padding:0px;
+}
+#player1{background:  rgb(86, 165, 234);}
+#player2{background:  rgb(49, 49, 49);}
+#player3{background:  rgb(117, 0, 2);}
+#player4{background:  rgb(143, 148, 93);}
+.defeated{opacity:0.3; transition: 2s; cursor: not-allowed;}
 #healthHolders {
     height:50px;
 }
