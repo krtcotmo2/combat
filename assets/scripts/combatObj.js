@@ -9,17 +9,15 @@ let theGame = {
     start: function () {
         this.numAtt=1;
         this.numWins =0;
-        this.fighters = this.setFighters();
-        this.setInstBlock("warrior");
-        this.setSaberWidth();
         this.myFighter = undefined;
         this.opponent = undefined;
+        this.fighters = this.setFighters();
+        this.setSaberWidth();        
         this.setInstBlock("warrior");
         $(".card").removeClass("defeated");
-        $(".rtF.fighterImg").css("background","none");
-        $(".ltF.fighterImg").css("background","none");
-        $(".healthText.opp").text("");
-        $(".healthText.fgt").text("");
+        $(".fighterImg").css("background","none");
+        $(".healthText").text("");
+        $(".healthText").text("");
         
         theGame.setSaberWidth(false);        
     },
